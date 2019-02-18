@@ -27,13 +27,7 @@ class SearchBar extends React.Component {
           }    
           
     PokeClick = () => {
-        // let name = [];
-        // console.log('check me out', this.state)
-        // console.log('what are you', e.target.value)
-        //     if(e.target.value){
-        //         name.push(e.target.value)
-        //     }
-        //     this.setState({search:name})
+        
         console.log(this.state)
         this.setState({display: true})
     }
