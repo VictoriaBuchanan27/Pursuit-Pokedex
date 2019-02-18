@@ -23,6 +23,14 @@ class SearchBar extends React.Component {
           }    
         }
 
+<<<<<<< HEAD
+=======
+          }
+    ProfileClick = (e) => {
+        this.props.handleProfileClick(e.target.value)
+    }    
+          
+>>>>>>> master
     PokeClick = (e) => {
         if(this.state.search === 'string'){
             this.setState({display: this.search, search:PokemonList})
@@ -53,12 +61,19 @@ class SearchBar extends React.Component {
                         ' alt ='' height ='60px' className="img"/>  
                     </a>
                     <datalist id ='pokemonList' >
+<<<<<<< HEAD
 
                     {
                         
                     typeof this.state.search === 'string' ? <option onClick={(e)=>{this.PokeClick(e)}}/> : 
                     this.state.search.map((e,i)=>{ return <option value = {`${e}`} key ={i} />
 
+=======
+                   
+                    {
+                    this.state.search.map((e,i)=>{
+                        return <option value = {`${e}`} key ={i} onClick={this.ProfileClick} />
+>>>>>>> master
                     })
                 }
                     </datalist>
