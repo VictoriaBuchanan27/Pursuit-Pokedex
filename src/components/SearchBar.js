@@ -20,12 +20,8 @@ class SearchBar extends React.Component {
                 console.log(e)
                 this.setState({search:e});
                 }) 
-            } else if(this.state.search.includes(' ')){
-                return
-            }
-
           }    
-          
+        }
     PokeClick = () => {
         
         console.log(this.state)
@@ -56,7 +52,7 @@ class SearchBar extends React.Component {
                     <datalist id ='pokemonList' >
                     {
                         
-                    typeof this.state.search === 'string' ? <option onClick={(e)=>{this.PokeClick(e.target.value)}}/> : this.state.search.map((e,i)=>{ return <option value = {`${e}`} key ={i} href='#'/>
+                    typeof this.state.search === 'string' ? <option onClick={(e)=>{this.PokeClick(e.target.value)}}/> : this.state.search.map((e,i)=>{ return <option value = {`${e}`} key ={i} />
 
                     })
                 }
