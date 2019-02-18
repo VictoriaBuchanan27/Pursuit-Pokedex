@@ -9,7 +9,7 @@ class SearchBar extends React.Component {
         super(props)
         this.state = {
             search : PokemonList,
-            display : false,
+            display : '',
         }
     }
 
@@ -19,13 +19,16 @@ class SearchBar extends React.Component {
              this.state.search.map((e)=>{
                 console.log(e)
                 this.setState({search:e});
-                }) 
+            }) 
           }    
         }
-    PokeClick = () => {
-        
-        console.log(this.state)
-        this.setState({display: true})
+
+    PokeClick = (e) => {
+        if(this.state.search === 'string'){
+            this.setState({display: this.search, search:PokemonList})
+        }
+        // console.log('this is never shown', this.state)
+        // this.setState({display: e.target.value})
     }
 
 
@@ -50,9 +53,11 @@ class SearchBar extends React.Component {
                         ' alt ='' height ='60px' className="img"/>  
                     </a>
                     <datalist id ='pokemonList' >
+
                     {
                         
-                    typeof this.state.search === 'string' ? <option onClick={(e)=>{this.PokeClick(e.target.value)}}/> : this.state.search.map((e,i)=>{ return <option value = {`${e}`} key ={i} />
+                    typeof this.state.search === 'string' ? <option onClick={(e)=>{this.PokeClick(e)}}/> : 
+                    this.state.search.map((e,i)=>{ return <option value = {`${e}`} key ={i} />
 
                     })
                 }
