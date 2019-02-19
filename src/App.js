@@ -57,8 +57,6 @@ handleProfileClick = pokename => {
         </>
       )
     } 
-    
-    
     return (
         <>
         <div className="App">
