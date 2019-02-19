@@ -5,7 +5,7 @@ import Axios from 'axios';
 import DisplayList from './components/displayList.js';
 import Header from './components/header'
 import Profile from './components/Profile'
-import DisplayMove from './components/Moves'
+import BaseStatus from './components/Moves'
 
 class App extends Component {
   constructor(props){
@@ -13,7 +13,8 @@ class App extends Component {
    this.state = {
      pokemons : [],
      isActiveSearch : false,
-     profileClicked: ''
+     profileClicked: '',
+     stats:[]
    }
  }
  
@@ -23,6 +24,7 @@ class App extends Component {
  }
 handleProfileClick = pokename => {
   let profile = pokename;
+  console.log('i am here',this.state.profileClicked)
   this.setState({profileClicked:profile})
 
 }
@@ -31,6 +33,7 @@ handleProfileClick = pokename => {
     Axios.get(`https://pokeapi.co/api/v2/pokemon/?offset=${this.state.pokemons.length}&limit=20`)
    .then((pokemon)=>{
      const newPokemonArr =this.state.pokemons.concat(pokemon.data.results);
+     
      this.setState({pokemons:newPokemonArr})
      console.log(this.state)
    },(err)=>{
@@ -44,7 +47,7 @@ handleProfileClick = pokename => {
  type
 
   render() {
-    let poke = this.state.pokemons;
+    let poke = this.state.stats;
     if (this.state.profileClicked.length > 1 || this.state.profileClicked !== ""){
       return (
         <>
@@ -52,6 +55,7 @@ handleProfileClick = pokename => {
         <Header></Header>
         <SearchBar handleProfileClick={this.handleProfileClick}/>
         <Profile pokemon={this.state.profileClicked}></Profile>
+        <div><BaseStatus poke ={poke}/></div>
         </div>
         
         </>
@@ -62,8 +66,10 @@ handleProfileClick = pokename => {
         <div className="App">
         <Header></Header>
         <SearchBar handleProfileClick={this.handleProfileClick}/>
-      <DisplayList pokemons={this.state.pokemons} handleProfileClick={this.handleProfileClick}/>
+        <DisplayList pokemons={this.state.pokemons} handleProfileClick={this.handleProfileClick}/>
           {/* <DisplayList pokemons={this.state.pokemons}/> */}
+         
+        
         <LoadMore getPokemon={this.getPokemon} pokemons={this.state.pokemons} />
         </div>
       </> )   

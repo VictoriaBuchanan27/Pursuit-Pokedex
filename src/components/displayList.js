@@ -6,7 +6,6 @@ import './displayList.css';
 const DisplayList = (props)=>{
     const pokemon = props.pokemons  
    const ProfileClick = (e) => {
-       console.log(e.target.id)
         props.handleProfileClick(e.target.id)
     }   
    
