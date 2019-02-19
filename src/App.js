@@ -5,6 +5,7 @@ import Axios from 'axios';
 import DisplayList from './components/displayList.js';
 import Header from './components/header'
 import Profile from './components/Profile'
+import DisplayMove from './components/Moves'
 
 class App extends Component {
   constructor(props){
@@ -40,6 +41,8 @@ handleProfileClick = pokename => {
    
  }
 
+ type
+
   render() {
     let poke = this.state.pokemons;
     if (this.state.profileClicked.length > 1 || this.state.profileClicked !== ""){
@@ -65,13 +68,7 @@ handleProfileClick = pokename => {
           {/* <DisplayList pokemons={this.state.pokemons}/> */}
         <LoadMore getPokemon={this.getPokemon} pokemons={this.state.pokemons} />
         </div>
-      </> )
-    
-    
-    
-   
-    
-   
+      </> )   
   }
 }
 
