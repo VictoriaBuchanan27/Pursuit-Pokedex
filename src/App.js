@@ -5,7 +5,6 @@ import Axios from 'axios';
 import DisplayList from './components/displayList.js';
 import Header from './components/header'
 import Profile from './components/Profile'
-import BaseStatus from './components/Moves'
 
 class App extends Component {
   constructor(props){
@@ -55,7 +54,6 @@ handleProfileClick = pokename => {
         <Header></Header>
         <SearchBar handleProfileClick={this.handleProfileClick}/>
         <Profile pokemon={this.state.profileClicked}></Profile>
-        <div><BaseStatus poke ={poke}/></div>
         </div>
         
         </>

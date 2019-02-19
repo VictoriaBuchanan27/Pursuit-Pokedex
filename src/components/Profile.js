@@ -21,23 +21,30 @@ class Profile extends Component {
                         name:'lol'
                     }
                 }]
-            }
+            },
+            move: {name:[]},
         }
     }
      componentDidMount = () => {
+        let moveList = this.state.move.name
         Axios.get(`https://pokeapi.co/api/v2/pokemon/${this.props.pokemon}`)
         .then((data)=>{
+            
             const newStats = data.data;
-            data.data.moves.map((e)=>{
-                console.log('name---------------',e.move.name)
+            data.data.moves.map((e, i)=>{
+                if(i > 4){
+                    moveList.push(e.move.name)
+                }
+                
             })
-            this.setState({stats:newStats})
+            this.setState({stats:newStats, move:moveList})
         },(err)=> console.log(err.toString()))
     }
  
     render () {
         let name = this.state.stats.name.charAt(0).toUpperCase() + this.state.stats.name.slice(1)
-        
+        let move = this.state.move.name
+        console.log('what are you',move)
         return (
             <>
             <div className='profile'>
@@ -92,6 +99,15 @@ class Profile extends Component {
             <div className='col'>Sp.Defense</div>
             <div className='col'>Speed</div>
             </div>
+            <div className='row'>
+            {
+                move.map(e=>{
+                  return  <div className='col'>{e}</div>
+                })
+                
+            }
+            
+            </div>
             </div>
             </> 
         )
@@ -103,35 +119,35 @@ class Profile extends Component {
 export default Profile;
 
 
-BaseStatus = () => {
+// BaseStatus = () => {
      
-    const name = this.state.stats
-   // const handleApiCall = () =>{
-       componentDidMount = () => {
-       axios.get(`https://pokeapi.co/api/v2/pokemon/bulbasaur`)
-           .then((response)=> {
-               response.data.stats.map((e)=>{
-                       name.push(e.stat.name, e.base_stat) 
-                 })
-               },(err) =>{
-                console.log('error');
-               })
-           }
+//     const name = this.state.stats
+//    // const handleApiCall = () =>{
+//        componentDidMount = () => {
+//        axios.get(`https://pokeapi.co/api/v2/pokemon/bulbasaur`)
+//            .then((response)=> {
+//                response.data.stats.map((e)=>{
+//                        name.push(e.stat.name, e.base_stat) 
+//                  })
+//                },(err) =>{
+//                 console.log('error');
+//                })
+//            }
             
-           // }
+//            // }
 
-               console.log('------------', name)
-               let display = ''
-               name.map((e,i) => { return display = display + parseInt(e)})
-               console.log('------------',[9,8,7,6,5,4])
-               render () {
-                return (
-                   <>
-                   <div className='pokemon-container'>
-                       <p>{name}</p>
-               </div>
-                   </>
-                )
-           }
-       }
-   }
+//                console.log('------------', name)
+//                let display = ''
+//                name.map((e,i) => { return display = display + parseInt(e)})
+//                console.log('------------',[9,8,7,6,5,4])
+//                render () {
+//                 return (
+//                    <>
+//                    <div className='pokemon-container'>
+//                        <p>{name}</p>
+//                </div>
+//                    </>
+//                 )
+//            }
+//        }
+//    }
