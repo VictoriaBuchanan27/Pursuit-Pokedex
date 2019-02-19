@@ -5,6 +5,7 @@ import Axios from 'axios';
 import DisplayList from './components/displayList.js';
 import Header from './components/header'
 import Profile from './components/Profile'
+import HomeButton from './components/HomeButton'
 
 class App extends Component {
   constructor(props){
@@ -27,6 +28,10 @@ handleProfileClick = pokename => {
   this.setState({profileClicked:profile})
 
 }
+handleHomeClick = () => {
+  let profile = '';
+  this.setState({profileClicked:profile})
+}
  componentDidMount(){
    if(this.state.pokemons.length < 20 && this.state.isActiveSearch === false){
     Axios.get(`https://pokeapi.co/api/v2/pokemon/?offset=${this.state.pokemons.length}&limit=20`)
@@ -47,12 +52,14 @@ handleProfileClick = pokename => {
 
   render() {
     let poke = this.state.stats;
+
     if (this.state.profileClicked.length > 1 || this.state.profileClicked !== ""){
       return (
         <>
         <div className='App'>
         <Header></Header>
         <SearchBar handleProfileClick={this.handleProfileClick}/>
+        <HomeButton profileClicked={this.state.profileClicked} handleHomeClick={this.handleHomeClick}></HomeButton>
         <Profile pokemon={this.state.profileClicked}></Profile>
         </div>
         
